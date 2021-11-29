@@ -120,6 +120,9 @@ int main(void) {
 		}
 
 	} while (option != 7);
+	ll_deleteLinkedList(listaMinotauro);
+	ll_deleteLinkedList(listaDeEditoriales);
+	ll_deleteLinkedList(listaDeLibros);
 
 	return 0;
 }
