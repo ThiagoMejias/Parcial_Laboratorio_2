@@ -100,10 +100,11 @@ int libro_getAutor(Libro *this, char *autor);
 /// @param dos
 /// @return retorna el resultado de la comparacino
 int libro_comparadordDeAutor(void *uno, void *dos);
+
 /// @fn int libro_esDeMinotaro(void*)
 /// @brief valida si un elemento es de la editorial minotauro
 /// @param elemento
 /// @return retorna 0 si no lo es y 1 si lo es
 int libro_esDeMinotaro(void *elemento);
 
-
+int libro_modificarSegunPrecio(void *element);

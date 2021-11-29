@@ -11,6 +11,7 @@
 #include "Controller.h"
 
 #define MINOTAURO "minotauro.csv"
+#define MAPEADO "mapeado.csv"
 int main(void) {
 	setbuf(stdout, NULL);
 	int option;
@@ -58,8 +59,13 @@ int main(void) {
 		case 3:
 			if (ll_isEmpty(listaDeLibros) == 0
 					&& ll_isEmpty(listaDeEditoriales) == 0) {
-				controller_sortAutor(listaDeLibros);
-				printf("Archivos Ordenados Correctamente\n");
+				if (confirmacionDeAccion(
+						"Desea Ordenar los archivos?, si es asi escriba 'si' de lo contrario ingrese no\n")
+						== 0) {
+					controller_sortAutor(listaDeLibros);
+					printf("Archivos Ordenados Correctamente\n");
+				}
+
 			} else {
 				printf("Faltan cargar archivos\n");
 			}
@@ -78,16 +84,42 @@ int main(void) {
 		case 5:
 			if (ll_isEmpty(listaDeLibros) == 0
 					&& ll_isEmpty(listaDeEditoriales) == 0) {
-				listaMinotauro = ll_filter(listaDeLibros, libro_esDeMinotaro);
-				controller_saveAsText(MINOTAURO, listaMinotauro);
+				if (confirmacionDeAccion(
+						"Desea crear un archivo solo con los libros de 'MINOTAURO'?, si es asi escriba 'si' de lo contrario ingrese no\n")
+						== 0) {
+					listaMinotauro = ll_filter(listaDeLibros,
+							libro_esDeMinotaro);
+					controller_saveAsText(MINOTAURO, listaMinotauro);
+					printf("Archivo creado con exito\n");
+				}
+
 			} else {
 				printf("Faltan cargar archivos\n");
 			}
 
 			break;
+		case 6:
+			if (ll_isEmpty(listaDeLibros) == 0
+					&& ll_isEmpty(listaDeEditoriales) == 0) {
+				if (confirmacionDeAccion(
+						"Desea Aplicar descuentos?, si es asi escriba 'si' de lo contrario ingrese no\n")
+						== 0) {
+
+					ll_map(listaDeLibros, libro_modificarSegunPrecio);
+					controller_saveAsText(MAPEADO, listaDeLibros);
+					printf("Descuentos Aplicados:\n");
+					controller_printLibrosConEditorial(listaDeLibros,
+							listaDeEditoriales);
+					printf("Archivo creado con exito\n");
+				}
+
+			} else {
+				printf("Faltan cargar archivos\n");
+			}
+			break;
 		}
 
-	} while (option != 6);
+	} while (option != 7);
 
 	return 0;
 }

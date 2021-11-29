@@ -531,3 +531,39 @@ LinkedList* ll_filter(LinkedList *this, int (*fn)(void *element)) {
 	return nuevaLista;
 }
 
+int ll_count(LinkedList *this, int (*fn)(void*)) {
+	void *elemento;
+	int retorno;
+	int tam;
+	retorno = -1;
+	if (this != NULL && fn != NULL) {
+		retorno = 0;
+		tam = ll_len(this);
+		for (int i = 0; i < tam; i++) {
+			elemento = ll_get(this, i);
+			retorno += fn(elemento);
+		}
+
+	}
+
+	return retorno;
+}
+
+int ll_map(LinkedList *this, int (*fn)(void *element)) {
+	int retorno;
+	void *element;
+	int tam;
+	retorno = -1;
+	if (this != NULL && fn != NULL) {
+		tam = ll_len(this);
+		for (int i = 0; i < tam; i++) {
+			element = ll_get(this, i);
+			if (fn(element) == 0) {
+				retorno = 0;
+			}
+		}
+
+	}
+	return retorno;
+}
+

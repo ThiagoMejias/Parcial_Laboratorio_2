@@ -70,6 +70,7 @@ int controller_sortAutor(LinkedList *pArrayLibros) {
 
 	return retorno;
 }
+
 int controller_saveAsText(char *path, LinkedList *pArrayLibros) {
 
 	FILE *pFile;
@@ -158,7 +159,8 @@ int menuPrincipal() {
 			"3-Ordenar la lista de forma ascendente por autor\n"
 			"4-Listar Los libros\n"
 			"5-Realizar una listado de los libros de la editorial Minotauro\n"
-			"6-Salir\n");
+			"6-Crear Lista con descuentos\n"
+			"7-Salir\n");
 	getIntWithParams("Ingrese una opcion\n", "Ingrese una opcion valida\n",
 			&retorno, 1, 7);
 	return retorno;

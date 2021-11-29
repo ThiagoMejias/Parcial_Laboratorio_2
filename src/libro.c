@@ -199,5 +199,29 @@ int libro_comparadordDeAutor(void *uno, void *dos) {
 	return retorno;
 }
 
+int libro_modificarSegunPrecio(void *element) {
+	Libro *aux;
+	int retorno;
+	float precio;
+	float precioConDescuento;
+	int idEditorial;
+	retorno = -1;
+	aux = (Libro*) element;
+	if (libro_getIdEditorial(aux, &idEditorial) != -1
+			&& libro_getPrecio(aux, &precio) != -1) {
+		if (idEditorial == 1 && precio > 299) {
+			precioConDescuento = precio - (precio * 0.2);
+			libro_setPrecio(aux, precioConDescuento);
+			retorno = 0;
+		}
+		if (idEditorial == 2 && precio < 201) {
+			precioConDescuento = precio - (precio * 0.1);
+			libro_setPrecio(aux, precioConDescuento);
+			retorno = 0;
+		}
 
+	}
+
+	return retorno;
+}
 
